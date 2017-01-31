@@ -6,12 +6,13 @@ import sys
 playlist_dir = '../Playlists/'
 playlist_name = 'Favorites.m3u'
 
-new_playlist_path = '/Look/At/This/Path'
+new_playlist_path = 'E:/ALL_MUSIC/ALL'
 
 #if going from windows-like to unix-like
-reverse_slash_direction = False
+reverse_slash_direction = True
 
 # Check that the file exists
+
 
 
 # Open File Read In
@@ -36,6 +37,11 @@ for line in playlist:
 			song_path_old.popleft()
 	song_paths_bare.append(song_path_old)
 
+new_playlist = open('New_{}'.format(playlist_name), 'w')
 for path in song_paths_bare:
 	str_path = '/'.join(path)
-	print '{}/{}'.format(new_playlist_path, str_path) 
+	str_path = '{}/{}'.format(new_playlist_path,str_path)
+	if reverse_slash_direction:
+		str_path = str_path.replace('/','\\')
+	new_playlist.write(str_path)
+	
